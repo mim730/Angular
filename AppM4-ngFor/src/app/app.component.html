@@ -1,5 +1,13 @@
+<button (click)="loadCourses()">Load Courses</button>
+<button (click)= "onAdd()">Add</button>
 <ul>
   <li *ngFor = "let course of courses; even as isEven">
     {{ course.name }} <span *ngIf = "isEven">(EVEN)</span>
+    <button (click)="onRemove(course)">Remove</button>
+    <button (click)="onChange(course)">Remove & Update</button>
+  </li>
+
+  <li *ngFor="let course2 of courses2; trackBy : trackCourse">
+    {{course2.name}}
   </li>
 </ul>
