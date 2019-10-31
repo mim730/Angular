@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-posts',
@@ -7,7 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsComponent implements OnInit {
 
-  constructor(http: Http) { }
+  //customersObservable : Observable<Customer[]>;
+
+  posts = {};
+  private url='https://jsonplaceholder.typicode.com/posts';
+
+  constructor(private http: HttpClient) {
+    http.get(this.url)
+    .subscribe(response =>{
+      this.posts=response;
+
+    });
+  }
+
+  createPost(input: HTMLInputElement){
+    let post1: any = { title: input.value}
+    this.http.post(this.url, JSON.stringify(post1))
+    .subscribe(response => {
+      //post1.id = response.id;
+      console.log(response)
+
+    });
+
+  }
 
   ngOnInit() {
   }
