@@ -2,6 +2,8 @@
             SERVICES
 ==================================*/
 
-$(document).ready(function() {
+
+$(document).ready(function () {
+    // animate on scroll
     new WOW().init();
 });
